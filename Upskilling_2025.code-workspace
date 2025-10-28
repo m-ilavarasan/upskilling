@@ -1,0 +1,35 @@
+{
+    "folders": [
+        {
+            "path": "CPP_DSA"
+        },
+        {
+            "path": "AI_ML_Python"
+        },
+        {
+            "path": "System_Design"
+        },
+        {
+            "path": "Communication_Practice"
+        }
+    ],
+    "settings": {
+        "code-runner.runInTerminal": true,
+        "editor.formatOnSave": true,
+        "files.autoSave": "onWindowChange",
+        "terminal.integrated.defaultProfile.windows": "Command Prompt",
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "python.defaultInterpreterPath": "python",
+        "editor.minimap.enabled": false,
+        "workbench.startupEditor": "none",
+        "extensions.recommendations": [
+            "ms-vscode.cpptools",
+            "formulahendry.code-runner",
+            "ms-python.python",
+            "ms-toolsai.jupyter",
+            "yzhang.markdown-all-in-one",
+            "eamodio.gitlens",
+            "hediet.vscode-drawio"
+        ]
+    }
+}
