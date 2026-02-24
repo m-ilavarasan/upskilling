@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keerthi's invisible jewellery</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-brand">
+      <span class="brand-name">Keerthi's invisible jewellery</span>
+      <span class="brand-tagline">Glow in Silence</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#" data-view="home" class="nav-link active">Home</a></li>
+      <li><a href="#" data-view="cart" class="nav-link">Cart <span id="cart-count" class="cart-badge">0</span></a></li>
+      <li><a href="#" data-view="management" class="nav-link">Management</a></li>
+      <li><a href="#" data-view="reports" class="nav-link">Reports</a></li>
+      <li><a href="#" data-view="signin" class="nav-link" id="nav-signin">Sign in</a></li>
+      <li><a href="#" data-view="signup" class="nav-link" id="nav-signup">Sign up</a></li>
+      <li><span class="nav-user" id="nav-user"></span></li>
+      <li><a href="#" class="nav-link" id="nav-signout">Sign out</a></li>
+    </ul>
+  </nav>
+
+  <main class="main-content">
+    <!-- Home View -->
+    <section id="home-view" class="view active">
+      <h1>Our Collection</h1>
+      <div id="products-grid" class="products-grid"></div>
+    </section>
+
+    <!-- Cart View -->
+    <section id="cart-view" class="view">
+      <h1>Shopping Cart</h1>
+      <div id="cart-items" class="cart-items"></div>
+      <div id="cart-totals" class="cart-totals"></div>
+    </section>
+
+    <!-- Sign in View -->
+    <section id="signin-view" class="view">
+      <h1>Sign in</h1>
+      <form id="signin-form" class="auth-form">
+        <input type="text" id="signin-username" placeholder="Username" required>
+        <input type="password" id="signin-password" placeholder="Password" required>
+        <button type="submit" class="btn btn-primary">Sign in</button>
+        <p class="auth-note">Admin account: <strong>admin / admin123</strong></p>
+        <p id="signin-error" class="auth-error"></p>
+      </form>
+    </section>
+
+    <!-- Sign up View -->
+    <section id="signup-view" class="view">
+      <h1>Sign up</h1>
+      <form id="signup-form" class="auth-form">
+        <input type="text" id="signup-username" placeholder="Choose a username" required>
+        <input type="password" id="signup-password" placeholder="Choose a password" required>
+        <button type="submit" class="btn btn-primary">Create account</button>
+        <p class="auth-note">New accounts are regular users. Only admin can access Management and Reports.</p>
+        <p id="signup-error" class="auth-error"></p>
+      </form>
+    </section>
+
+    <!-- Management View -->
+    <section id="management-view" class="view">
+      <h1>Product Management</h1>
+      <div class="management-form">
+        <h2>Add New Product</h2>
+        <form id="add-product-form">
+          <input type="text" id="product-name" placeholder="Product Name" required>
+          <div class="image-upload-area">
+            <label class="image-upload-label">Product Image</label>
+            <div id="add-image-preview" class="image-preview" title="Click to upload image">
+              <span class="image-placeholder">Click to browse & select image</span>
+              <input type="file" id="product-image-file" accept="image/*" class="image-file-input">
+            </div>
+          </div>
+          <input type="number" id="product-price" placeholder="Price (default 99)" min="0" step="0.01">
+          <button type="submit" class="btn btn-primary">Add Product</button>
+        </form>
+      </div>
+      <div class="product-list">
+        <h2>Existing Products</h2>
+        <div id="management-products"></div>
+      </div>
+    </section>
+
+    <!-- Reports View -->
+    <section id="reports-view" class="view">
+      <h1>Monthly Reports</h1>
+      <div id="reports-summary" class="reports-summary"></div>
+      <div id="reports-breakdown" class="reports-breakdown hidden"></div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
