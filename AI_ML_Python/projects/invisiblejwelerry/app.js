@@ -88,19 +88,31 @@ function getUsers() {
   try {
     const data = localStorage.getItem(STORAGE_KEYS.users);
     let users = data ? JSON.parse(data) : [];
-    if (users.length === 0) {
-      // Seed default admin
-      users = [{
+
+    // Check if admin user exists, if not add it
+    const adminExists = users.some(u => u.id === 'user-admin');
+    if (!adminExists) {
+      users.push({
         id: 'user-admin',
         username: 'admin',
         password: 'admin123',
         isAdmin: true
-      }];
+      });
       setUsers(users);
     }
     return users;
   } catch {
-    return [];
+    // If error parsing, return only admin user
+    const adminUser = [{
+      id: 'user-admin',
+      username: 'admin',
+      password: 'admin123',
+      isAdmin: true
+    }];
+    try {
+      setUsers(adminUser);
+    } catch { }
+    return adminUser;
   }
 }
 
@@ -678,12 +690,15 @@ function openEditModal(productId) {
   const editPreview = modal.querySelector('#edit-image-preview');
   const editFileInput = modal.querySelector('#edit-image-file');
   if (product.imageUrl) {
+    const placeholder = editPreview.querySelector('.image-placeholder');
+    if (placeholder) placeholder.remove();
     const img = document.createElement('img');
     img.src = product.imageUrl;
     img.alt = 'Current';
     img.className = 'preview-img';
     img.onerror = () => { img.style.display = 'none'; };
     editPreview.insertBefore(img, editPreview.firstChild);
+    editPreview.classList.add('has-image');
   }
   setupImageUpload(editPreview, editFileInput, (dataUrl) => { editFormImageData = dataUrl; });
 
@@ -705,7 +720,9 @@ function openEditModal(productId) {
     const products = getProducts();
     const idx = products.findIndex(p => String(p.id) === String(productId));
     if (idx >= 0) {
-      products[idx] = { ...products[idx], name, imageUrl: editFormImageData || undefined, price: Math.max(0, price), active };
+      // Keep existing image if no new image was uploaded
+      const imageUrl = editFormImageData || products[idx].imageUrl;
+      products[idx] = { ...products[idx], name, imageUrl: imageUrl || undefined, price: Math.max(0, price), active };
       setProducts(products);
     }
 

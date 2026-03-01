@@ -268,6 +268,13 @@ h2 {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
+.cart-totals:empty {
+  display: none;
+  padding: 0;
+  background: none;
+  box-shadow: none;
+}
+
 .totals-row {
   display: flex;
   justify-content: space-between;
@@ -305,6 +312,12 @@ h2 {
   border: 1px solid #ddd;
   border-radius: 4px;
   min-width: 150px;
+  font-size: 0.9rem;
+}
+
+.management-form input[type="text"]::placeholder,
+.management-form input[type="number"]::placeholder {
+  color: #999;
 }
 
 /* Auth forms */
@@ -324,6 +337,12 @@ h2 {
   padding: 0.5rem 0.75rem;
   border: 1px solid #ddd;
   border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.auth-form input[type="text"]::placeholder,
+.auth-form input[type="password"]::placeholder {
+  color: #999;
 }
 
 .auth-note {
@@ -348,8 +367,8 @@ h2 {
 }
 
 .image-preview {
-  width: 120px;
-  height: 120px;
+  width: 140px;
+  height: 140px;
   border: 2px dashed var(--color-border);
   border-radius: 8px;
   display: flex;
@@ -360,6 +379,7 @@ h2 {
   overflow: hidden;
   background: #fafafa;
   transition: border-color 0.2s, background 0.2s;
+  flex-shrink: 0;
 }
 
 .image-preview:hover {
@@ -388,9 +408,10 @@ h2 {
 }
 
 .image-preview .preview-img {
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
+  padding: 4px;
 }
 
 .modal .image-preview {
@@ -450,8 +471,10 @@ h2 {
   background: #fff;
   padding: 1.5rem;
   border-radius: 8px;
-  max-width: 400px;
+  max-width: 500px;
   width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
 .modal.image-modal {
@@ -476,22 +499,44 @@ h2 {
   font-weight: 500;
 }
 
+.modal label:has(input[type="checkbox"]) {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 400;
+  margin-top: 0.5rem;
+}
+
 .modal input[type="text"],
 .modal input[type="number"] {
   width: 100%;
   padding: 0.5rem;
   border: 1px solid #ddd;
   border-radius: 4px;
+  font-size: 0.9rem;
 }
 
 .modal input[type="checkbox"] {
-  margin-right: 0.5rem;
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+  accent-color: var(--color-accent);
+}
+
+.modal button[type="submit"] {
+  width: 100%;
 }
 
 .modal-actions {
   margin-top: 1.5rem;
   display: flex;
   gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.modal-actions .btn {
+  flex: 1;
+  min-width: 100px;
 }
 
 /* Reports */
@@ -570,5 +615,10 @@ h2 {
   .cart-table th:nth-child(n+4),
   .cart-table td:nth-child(n+4) {
     font-size: 0.85rem;
+  }
+
+  .cart-totals {
+    max-width: 100%;
+    margin-left: 0;
   }
 }
